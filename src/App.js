@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import LoginComponent from './login-screen';
+import LoginComponent from './login';
+import HeaderComponent from './header-component';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container-fluid">
+      <HeaderComponent />
       <LoginComponent />
     </div>
   );
