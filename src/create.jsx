@@ -53,6 +53,7 @@ class CreateWorkflowComponent extends Component {
                             value={workflowName}
                             type="text" className="form-control" id="workflowName"
                             placeholder="Workflow Name"
+                            required
                         />
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn btnShuffle">Shuffle</button>
@@ -74,6 +75,7 @@ class CreateWorkflowComponent extends Component {
                                         name="title"
                                         value={node.title}
                                         type="text" className="form-control" id="title" placeholder="title"
+                                        required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -82,6 +84,7 @@ class CreateWorkflowComponent extends Component {
                                         name="content"
                                         rows="20"
                                         value={node.content}
+                                        required
                                         type="textarea" className="form-control" id="content" placeholder="content"
                                     />
                                 </div>
