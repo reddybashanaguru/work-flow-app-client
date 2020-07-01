@@ -24,9 +24,10 @@ class LoginComponent extends Component {
 
     login = (e) => {
         e.preventDefault();
-        const { email, password } = this.state;
-        let user = { email, password };
+        const { email, password, rememberme } = this.state;
+        let user = { email, password, rememberme };
         this.setState({ user });
+        this.props.doLogin(user);
     }
 
     onInputChange = (e) => {
