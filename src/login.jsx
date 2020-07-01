@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { famail } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Redirect } from 'react-router-dom';
 
 class LoginComponent extends Component {
     constructor(props) {
@@ -13,9 +12,18 @@ class LoginComponent extends Component {
         }
     }
 
+    isEmpty = (obj) => {
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop))
+                return false;
+        }
+
+        return true;
+    }
+
     login = () => {
         const { email, password } = this.state;
-        let user = { email, password }
+        let user = { email, password };
         this.setState({ user });
     }
 
@@ -27,7 +35,10 @@ class LoginComponent extends Component {
         this.setState({ [e.target.name]: e.target.checked });
     }
     render() {
-        const { email, password, rememberme } = this.state;
+        const { email, password, rememberme, user } = this.state;
+        if (!this.isEmpty(user)) {
+            return <Redirect to="/flow/list" />
+        }
         return (
             <div className="container login-form">
                 <div className="card">
@@ -62,7 +73,7 @@ class LoginComponent extends Component {
                                 <label className="form-check-label" for="rememberMe">Remember me</label>
                             </div>
                             <button type="submit" className="btn btn-primary">Login</button>
-                            <div className="footer"><a href="#" className="card-link">Don't have an account? Sign up here</a></div>
+                            <div className="footer"><a href="#" className="card-link">Don't have an account?Sign up here</a></div>
                         </form>
                     </div>
                 </div>
