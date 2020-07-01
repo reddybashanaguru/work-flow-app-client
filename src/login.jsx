@@ -12,6 +12,7 @@ class LoginComponent extends Component {
         }
     }
 
+    //helper function
     isEmpty = (obj) => {
         for (var prop in obj) {
             if (obj.hasOwnProperty(prop))
@@ -21,7 +22,8 @@ class LoginComponent extends Component {
         return true;
     }
 
-    login = () => {
+    login = (e) => {
+        e.preventDefault();
         const { email, password } = this.state;
         let user = { email, password };
         this.setState({ user });

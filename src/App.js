@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="container-fluid">
         <HeaderComponent />
-        <Route exact path="/login" component={LoginComponent} />
+        <Route exact path="/" component={LoginComponent} />
         <Route exact path="/flow/list" component={Flowlist} />
         {/* <LoginComponent /> */}
       </div>

@@ -22,10 +22,58 @@ body{
     text-align: center;
 }
 
-.search-icon {
+.search-form {
+ position: relative;
+ margin-top:100px;
+}
+.search-form input{
+    padding: 16px 48px 16px 24px;
+    border-radius: 16px;
+}
+
+.search-form .search-icon {
 	position: absolute;
-	top: -10px;
-	font-size: 24px;
-	color: #555;
-	right: 18px;
+	font-size: 12px;
+    color: #555;
+    margin-left:8px;
+}
+
+.create-button{
+   float: right !important;
+}
+
+.create-container{
+    margin: 20px;
+    padding: 48px 24px 0px 24px;
+}
+.create-container .create-header .form-control{
+  width:20%
+}
+.create-container  .create-header .btn-group{
+  float: right;
+  padding:16px;
+}
+.create-container  .create-header .btn-group button{
+    margin:0px 16px;
+    padding: 8px 32px;
+}
+
+.create-container  .create-header .btn-group .btnShuffle{
+   background:#AA00ED;
+   color:white;
+}
+
+.create-container .node-body {
+    display: flex;
+    width:100%;
+}
+.create-container .node-body .node{
+    margin:16px;
+    width: 20%;
+    padding: 16px;
+    border: 1px solid lightgrey;
+}
+
+.create-container .node-body .node .form-control{
+    border: 1px solid black;
 }
