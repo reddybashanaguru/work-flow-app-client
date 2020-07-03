@@ -4,6 +4,10 @@ body{
     box-sizing: border-box;
 }
 
+body svg{
+    cursor: pointer;
+}
+
 .login-form{
     margin:100px auto;
 }
@@ -42,13 +46,12 @@ body{
    float: right !important;
 }
 
-.create-container{
-    margin: 100px 20px;
-    padding: 48px 24px 0px 24px;
+.create-container .create-header{
+  border-bottom: 1px solid;
 }
-.create-container .create-header .form-control{
-  width:20%
-}
+.create-container .create-header input{
+    border: 1px solid black;
+  }
 .create-container  .create-header .btn-group{
   float: right;
   padding:16px;
@@ -102,4 +105,8 @@ body{
 }
 .workflow-container .workflow-box .workflow-status{
     padding: 16px;;
+}
+
+.disabled{
+    cursor:not-allowed;
 }

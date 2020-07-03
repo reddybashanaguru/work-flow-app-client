@@ -23,17 +23,21 @@ class Flowlist extends Component {
         const { workflowList = [], routerData } = this.props;
         // console.log('workflowList', workflowList);
         return (
-            <div>
-                <div className="search-form">
-                    <form class="form-inline">
-                        <input class="form-control" type="search" placeholder="Search Workflows...." aria-label="Search" />
-                        <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
-                    </form>
-                </div>
-                <button type="button" class="btn btn-success create-button" onClick={this.goToCreate}>
-                    <FontAwesomeIcon icon={faPlus} />
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="search-form col-sm-6">
+                        <form class="form-inline">
+                            <input class="form-control" type="search" placeholder="Search Workflows...." aria-label="Search" />
+                            <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
+                        </form>
+                    </div>
+                    <div className="col-sm-6 mt-5 pt-5 mr-0">
+                        <button type="button" class="btn btn-success create-button" onClick={this.goToCreate}>
+                            <span className="mr-1"> <FontAwesomeIcon icon={faPlus} /></span>
                   Create Workflow
                 </button>
+                    </div>
+                </div>
                 {workflowList && (
                     <div className="container-fluid workflow-container">
                         <div className="row">

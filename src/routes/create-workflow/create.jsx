@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faRandom, faTimes, faPlus, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class CreateWorkflowComponent extends Component {
@@ -28,7 +28,9 @@ class CreateWorkflowComponent extends Component {
             this.setState({ disableShuffle: true });
         }
     }
-
+    goToList = () => {
+        this.props.history.push("/flow");
+    }
     addNode = () => {
         const { workflow } = this.state;
         const { workflowList } = this.props;
@@ -136,30 +138,41 @@ class CreateWorkflowComponent extends Component {
         const { nodes = [], workflowName = '' } = editWorkFlow ? editWorkFlow : workflow;
         const { disableShuffle } = this.state;
         return (
-            <div className="create-container">
+            <div className="create-container container-fluid mt-5 pt-5">
+                <div>
+                    <span className="mr-1" onClick={this.goToList}><FontAwesomeIcon icon={faArrowLeft} size="2x" /></span>
+                </div>
                 <form onSubmit={this.saveWorkflow} id="create-node-form">
-                    <div className="form-group create-header">
-                        <input
-                            onChange={(e) => this.onInputChange(e)}
-                            name="workflowName"
-                            value={workflowName}
-                            type="text" className="form-control" id="workflowName"
-                            placeholder="Workflow Name"
-                            required
-                        />
-                        <div class="btn-group" role="group" aria-label="Basic example">
+                    <div className="form-group create-header row pb-4">
+                        <div className="col-sm-6 mt-3 ml-3">
+                            <input
+                                onChange={(e) => this.onInputChange(e)}
+                                name="workflowName"
+                                value={workflowName}
+                                type="text" className="form-control col-sm-5" id="workflowName"
+                                placeholder="Workflow Name"
+                                required
+                            />
+                        </div>
+                        <div className="btn-group col-sm-5" role="group" aria-label="Basic example">
                             <button type="button"
-                                class="btn btnShuffle"
+                                className={`btn btnShuffle ${(this.enableShuffle() || disableShuffle) && "disabled"}`}
                                 onClick={this.shuffleArray}
                                 disabled={this.enableShuffle() || disableShuffle}
-                            >Shuffle</button>
+                            >
+                                <span className="mr-1"><FontAwesomeIcon icon={faRandom} /></span>
+                            Shuffle
+                            </button>
                             <button
                                 type="button"
                                 class="btn btn-danger"
                                 onClick={this.deleteNode}
-                            // disabled={!workflowId}
-                            >Delete</button>
-                            <button type="button" class="btn btn-success" onClick={this.addNode}>Add Node</button>
+                            >
+                                <span className="mr-1"><FontAwesomeIcon icon={faTimes} /></span>
+                            Delete</button>
+                            <button type="button" class="btn btn-success" onClick={this.addNode}>
+                                <span className="mr-1"><FontAwesomeIcon icon={faPlus} /></span>
+                            Add Node</button>
                             <button type="submit" class="btn btn-primary">
                                 {workflowId ? "Update" : "Save"}
                             </button>
