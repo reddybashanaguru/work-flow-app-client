@@ -40,7 +40,7 @@ class LoginComponent extends Component {
     render() {
         const { email, password, rememberme, user } = this.state;
         if (!this.isEmpty(user)) {
-            return <Redirect to="/flow/list" />
+            return <Redirect to="/flow" />
         }
         return (
             <div className="container login-form">

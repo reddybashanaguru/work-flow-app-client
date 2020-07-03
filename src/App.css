@@ -43,7 +43,7 @@ body{
 }
 
 .create-container{
-    margin: 20px;
+    margin: 100px 20px;
     padding: 48px 24px 0px 24px;
 }
 .create-container .create-header .form-control{
@@ -74,6 +74,32 @@ body{
     border: 1px solid lightgrey;
 }
 
+.create-container .node-body .node .check-circle {
+    float: right;
+    margin-top: -58px;
+    padding: 16px;
+    margin-right: -58px;
+}
+
 .create-container .node-body .node .form-control{
     border: 1px solid black;
+}
+
+.workflow-container{
+    margin-top:50px;
+}
+
+.workflow-container .workflow-box{
+   border: 1px solid darkgray;
+    padding: 16px;
+    margin-right: 16px;
+    border-radius: 4px;
+}
+.workflow-container .workflow-box .workflow-name{
+    border: 1px solid;
+    padding: 16px;
+    border-radius: 4px;
+}
+.workflow-container .workflow-box .workflow-status{
+    padding: 16px;;
 }

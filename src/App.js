@@ -3,8 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import LoginComponent from './routes/login/';
-import HeaderComponent from './header-component';
-import Flowlist from './flowlist';
+import HeaderComponent from './components/header/';
+import Flowlist from './routes/workflow-list/';
+import CreateWorkflowComponent from './routes/create-workflow/';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <HeaderComponent />
         <Route exact path="/" component={LoginComponent} />
         <Route exact path="/login" component={LoginComponent} />
-        <Route exact path="/flow/list" component={Flowlist} />
+        <Route exact path="/flow" component={Flowlist} />
+        <Route exact path="/flow/create" component={CreateWorkflowComponent} />
+        <Route exact path="/flow/edit/:id" component={CreateWorkflowComponent} />
         {/* <LoginComponent /> */}
       </div>
     </Router>
