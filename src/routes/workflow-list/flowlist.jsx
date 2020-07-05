@@ -123,10 +123,12 @@ class Flowlist extends Component {
                                     name="workflow-box"
                                     onClick={(e) => { this.editWorkflow(e, index) }}
                                 >
-                                    <span
-                                        className="delete-icon"
-                                        onClick={(e) => { this.deleteFlow(e, flow) }}
-                                    ><FontAwesomeIcon icon={faTrash} color='red' /></span>
+                                    <div className="delete-icon-box float-right">
+                                        <span
+                                            className="delete-icon"
+                                            onClick={(e) => { this.deleteFlow(e, flow) }}
+                                        ><FontAwesomeIcon icon={faTrash} color='white' /></span>
+                                    </div>
                                     <div className="workflow-body pt-4">
                                         <p className="workflow-name">{flow.workflowName}-{index}</p>
                                         <p className="workflow-status">
@@ -149,7 +151,7 @@ class Flowlist extends Component {
                             ))}
                         </div>
                     </div>
-                ) : (<div className="container-fluid mt-5 p-3"><p>No Flows are available ...! Create now !</p></div>)
+                ) : (<div className="container-fluid mt-5 p-3 no-list"><p>No Flows are available ...! Create now !</p></div>)
                 }
             </div>
         )

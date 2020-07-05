@@ -59,6 +59,8 @@ body svg{
 
 .create-button{
    float: right !important;
+   background: #21D153 !important;
+   border-color: none;
 }
 
 .create-container .create-header{
@@ -113,8 +115,18 @@ body svg{
     margin-right: 16px;
     border-radius: 4px;
 }
-.workflow-container .workflow-box .workflow-body{
-
+.delete-icon-box{
+    padding: 12px 16px;
+    margin-top: -35px;
+    margin-right: -28px;
+    background: red;
+    border-radius: 50%;
+}
+.workflow-container .workflow-box .delete-icon-box{
+    visibility: hidden;
+}
+.workflow-container .workflow-box:hover .delete-icon-box{
+    visibility: visible;
 }
 .workflow-container .workflow-box .workflow-body .workflow-name{
     border: 1px solid;
@@ -123,6 +135,13 @@ body svg{
 }
 .workflow-container .workflow-box .workflow-body .workflow-status{
     padding: 16px;;
+}
+
+.no-list{
+    text-align: center;
+    font-family: cursive;
+    font-size: 20px;
+    background: #56E87F;
 }
 
 .disabled{
