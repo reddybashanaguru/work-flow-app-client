@@ -80,6 +80,17 @@ function workflowListReducer(state = workflowListState, action) {
     }
 }
 
+function workflowFilterListReducer(state = workflowListState, action) {
+    switch (action.type) {
+        case AppConstants.UPDATE_COMPLETE_LIST:
+            return {
+                workflowList: action.payload || []
+            }
+        default:
+            return state;
+    }
+}
+
 export {
-    workflowReducer, workflowListReducer
+    workflowReducer, workflowListReducer, workflowFilterListReducer
 }

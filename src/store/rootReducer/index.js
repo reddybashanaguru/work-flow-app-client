@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 import loginReducer from "../reducers/login-reducer";
-import { workflowReducer, workflowListReducer } from '../reducers/workflow-reducer';
+import { workflowReducer, workflowListReducer, workflowFilterListReducer } from '../reducers/workflow-reducer';
 import routeReducer from '../reducers/router-reducer';
 
 
@@ -11,6 +11,7 @@ export const makeRootReducer = asyncReducers => {
         workflow: workflowReducer,
         workflowList: workflowListReducer,
         routeData: routeReducer,
+        filteredWorkflowList: workflowFilterListReducer,
         ...asyncReducers
     });
 };

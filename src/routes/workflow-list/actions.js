@@ -19,3 +19,12 @@ export function updateWorkFlowList(payload) {
         });
     }
 };
+
+export function filteredWorkflowList(payload) {
+    return (dispatch, getState) => {
+        dispatch({
+            type: AppConstant.UPDATE_COMPLETE_LIST,
+            payload
+        });
+    }
+};

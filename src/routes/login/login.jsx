@@ -73,7 +73,7 @@ class LoginComponent extends Component {
                                     name="rememberme"
                                     value={rememberme}
                                     type="checkbox" className="form-check-input" id="rememberMe" />
-                                <label className="form-check-label" for="rememberMe">Remember me</label>
+                                <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
                             </div>
                             <button type="submit" className="btn btn-primary">Login</button>
                             <div className="footer"><a href="#" className="card-link">Don't have an account?Sign up here</a></div>

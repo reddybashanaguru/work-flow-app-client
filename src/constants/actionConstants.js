@@ -7,5 +7,6 @@ export default {
 
 
     GO_TO: 'GO_TO',
-    UPDATE_LIST: 'UPDATE_LIST'
+    UPDATE_LIST: 'UPDATE_LIST',
+    UPDATE_COMPLETE_LIST: 'UPDATE_COMPLETE_LIST'
 }

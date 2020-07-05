@@ -37,22 +37,30 @@ class Flowlist extends Component {
         }
     }
     filterSelect = (e) => {
-        this.setState({ value: e.target.value });
+        const status = e.target.value;
         const { workflowList = [] } = this.props;
-        console.log(this.props);
+        let filteredList = [];
+        if (status == "") {
+            this.props.filteredWorkflowList(filteredList);
+        } else if (workflowList.length) {
+            filteredList = workflowList.filter(f => f.status == status);
+            this.props.filteredWorkflowList(filteredList);
+        } else {
+            return null;
+        }
     }
-
 
     render() {
         const { clickToRedirect } = this.state;
-        const { workflowList = [], routerData } = this.props;
-        console.log('workflowList', workflowList);
+        const { workflowList = [], routerData, filteredWorkflowListData = [] } = this.props;
+        let listData = filteredWorkflowListData.length > 0 ? filteredWorkflowListData : workflowList;
+        console.log(listData, "listDatafrom list")
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="search-form col-sm-8">
-                        <form class="form-inline">
-                            <input class="form-control" type="search" placeholder="Search Workflows...." aria-label="Search" />
+                        <form className="form-inline">
+                            <input className="form-control" type="search" placeholder="Search Workflows...." aria-label="Search" />
                             <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
                             <div className="filter-box ml-5">
                                 <span className="filter-icon mt-1 mb-1 ml-3"><FontAwesomeIcon icon={faFilter} /></span>
@@ -64,24 +72,24 @@ class Flowlist extends Component {
                                     value={this.state.value}
                                 >
                                     <option value="" disabled>Filter</option>
+                                    <option value="">All</option>
                                     <option value="Completed">Completed</option>
-                                    <option value="In Progress">In Progress</option>
                                     <option value="Pending">Pending</option>
                                 </select>
                             </div>
                         </form>
                     </div>
                     <div className="col-sm-4 mt-5 pt-5 mr-0">
-                        <button type="button" class="btn btn-success create-button" onClick={this.goToCreate}>
+                        <button type="button" className="btn btn-success create-button" onClick={this.goToCreate}>
                             <span className="mr-1"> <FontAwesomeIcon icon={faPlus} /></span>
                   Create Workflow
                 </button>
                     </div>
                 </div>
-                {workflowList && (
+                {listData && listData.length > 0 ? (
                     <div className="container-fluid workflow-container">
                         <div className="row">
-                            {workflowList.map((flow, index) => (
+                            {listData.map((flow, index) => (
                                 <div
                                     className="workflow-box col-sm-2"
                                     key={index}
@@ -108,7 +116,8 @@ class Flowlist extends Component {
                             ))}
                         </div>
                     </div>
-                )}
+                ) : (<div className="container-fluid mt-5 p-3"><p>No Flows are available ...! Create now !</p></div>)
+                }
             </div>
         )
     }

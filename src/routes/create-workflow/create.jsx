@@ -125,7 +125,6 @@ class CreateWorkflowComponent extends Component {
     }
     saveWorkflow = (e) => {
         e.preventDefault();
-        debugger;
         const { workflow } = this.state;
         const { workflowList } = this.props;
         const workflowId = this.props.match.params.id || null;
@@ -138,7 +137,7 @@ class CreateWorkflowComponent extends Component {
                 node.color = 'grey';
             }
         } else {
-            let workflowCompleted = workflowPayload['nodes'].filter(e => e.status !== "Pending");
+            let workflowCompleted = workflowPayload['nodes'].filter(e => e.status !== "Pending" && e.status !== "In Progress");
             if (workflowCompleted.length) {
                 workflowPayload['status'] = "Completed"
             }
@@ -180,15 +179,15 @@ class CreateWorkflowComponent extends Component {
                             </button>
                             <button
                                 type="button"
-                                class="btn btn-danger"
+                                className="btn btn-danger"
                                 onClick={this.deleteNode}
                             >
                                 <span className="mr-1"><FontAwesomeIcon icon={faTimes} /></span>
                             Delete</button>
-                            <button type="button" class="btn btn-success" onClick={this.addNode}>
+                            <button type="button" className="btn btn-success" onClick={this.addNode}>
                                 <span className="mr-1"><FontAwesomeIcon icon={faPlus} /></span>
                             Add Node</button>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" className="btn btn-primary">
                                 {workflowId ? "Update" : "Save"}
                             </button>
                         </div>

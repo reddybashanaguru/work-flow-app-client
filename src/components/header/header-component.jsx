@@ -13,18 +13,18 @@ const HeaderComponent = (props) => {
 
     return (
         <div className="header-layout-container">
-            <nav class="navbar fixed-top" style={{ backgroundColor: '#E80093' }}>
+            <nav className="navbar fixed-top" style={{ backgroundColor: '#E80093' }}>
                 <Link to="/login">
-                    <a class="navbar-brand" href="#" style={{ color: '#ffffff' }}>
+                    <span className="navbar-brand" href="#" style={{ color: '#ffffff' }}>
                         <span className="mr-2"><FontAwesomeIcon icon={faNetworkWired} /></span>
                     FlowApp
-                </a>
+                    </span>
                 </Link>
                 {username &&
                     (<div>
                         <span style={{ color: 'white', marginRight: '16px', fontWeight: '800' }}>{username.toUpperCase()}</span>
                         <Link to="/login">
-                            <button type="button" class="btn btn-light">
+                            <button type="button" className="btn btn-light">
                                 <FontAwesomeIcon icon={faSignOutAlt} />
                         Logout
                     </button>
