@@ -36,6 +36,20 @@ class Flowlist extends Component {
             return null
         }
     }
+    onSearchFilter = (e) => {
+        const nameSearchValue = e.target.value;
+        const { workflowList = [] } = this.props;
+        let filteredList = [];
+        if (nameSearchValue == "") {
+            this.props.filteredWorkflowList(filteredList);
+        } else if (workflowList.length) {
+            filteredList = workflowList.filter(f => f.workflowName == nameSearchValue);
+            this.props.filteredWorkflowList(filteredList);
+        } else {
+            return null;
+        }
+    }
+
     filterSelect = (e) => {
         const status = e.target.value;
         const { workflowList = [] } = this.props;
@@ -54,13 +68,18 @@ class Flowlist extends Component {
         const { clickToRedirect } = this.state;
         const { workflowList = [], routerData, filteredWorkflowListData = [] } = this.props;
         let listData = filteredWorkflowListData.length > 0 ? filteredWorkflowListData : workflowList;
-        console.log(listData, "listDatafrom list")
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="search-form col-sm-8">
                         <form className="form-inline">
-                            <input className="form-control" type="search" placeholder="Search Workflows...." aria-label="Search" />
+                            <input
+                                className="form-control"
+                                type="search"
+                                placeholder="Search Workflows...."
+                                aria-label="Search"
+                                onChange={(e) => { this.onSearchFilter(e) }}
+                            />
                             <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
                             <div className="filter-box ml-5">
                                 <span className="filter-icon mt-1 mb-1 ml-3"><FontAwesomeIcon icon={faFilter} /></span>
