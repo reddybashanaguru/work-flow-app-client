@@ -30,9 +30,24 @@ body svg{
  position: relative;
  margin-top:100px;
 }
+ .search-form .form-inline .workflow-filter{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 32px;
+    text-overflow: '';
+    border-radius: 4px;
+    width:150%;
+ }
+
 .search-form input{
     padding: 16px 48px 16px 24px;
     border-radius: 16px;
+}
+.search-form .filter-box{
+    position:relative;
+}
+.search-form .filter-box .filter-icon{
+    position: absolute;;
 }
 
 .search-form .search-icon {

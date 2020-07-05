@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
-import { goTo } from "./actions";
+import { goTo, updateWorkFlowList } from "./actions";
 import Component from "./flowlist";
 
 function mapDispatchToProps(dispatch) {
     return {
         goTo: () => {
             dispatch(goTo())
+        },
+        updateWorkFlowList: (list) => {
+            dispatch(updateWorkFlowList(list))
         }
     };
 }

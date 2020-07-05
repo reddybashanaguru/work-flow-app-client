@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPlus, faFilter, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Flowlist extends Component {
@@ -7,31 +7,71 @@ class Flowlist extends Component {
         super(props);
         this.state = {
             Workflows: [],
-            clickToRedirect: false
+            clickToRedirect: false,
+            value: ''
         }
     }
 
     goToCreate = () => {
         this.props.history.push("/flow/create");
     }
-    editWorkflow = (index) => {
-        this.props.history.push(`/flow/edit/${index}`)
+    updateFlowStatus = (e, index) => {
+        if (e.target.nodeName !== "P") {
+            const { workflowList = [] } = this.props;
+            let updatedFlowList = workflowList[index];
+            if (updatedFlowList.status !== 'Completed') {
+                updatedFlowList.status = 'Completed'
+            } else {
+                updatedFlowList.status = 'Pending'
+            }
+            this.props.updateWorkFlowList({ ...updatedFlowList });
+        } else {
+            return null;
+        }
     }
+    editWorkflow = (e, index) => {
+        if (e.target.nodeName === 'P') {
+            this.props.history.push(`/flow/edit/${index}`);
+        } else {
+            return null
+        }
+    }
+    filterSelect = (e) => {
+        this.setState({ value: e.target.value });
+        const { workflowList = [] } = this.props;
+        console.log(this.props);
+    }
+
 
     render() {
         const { clickToRedirect } = this.state;
         const { workflowList = [], routerData } = this.props;
-        // console.log('workflowList', workflowList);
+        console.log('workflowList', workflowList);
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="search-form col-sm-6">
+                    <div className="search-form col-sm-8">
                         <form class="form-inline">
                             <input class="form-control" type="search" placeholder="Search Workflows...." aria-label="Search" />
                             <span className="search-icon"><FontAwesomeIcon icon={faSearch} /></span>
+                            <div className="filter-box ml-5">
+                                <span className="filter-icon mt-1 mb-1 ml-3"><FontAwesomeIcon icon={faFilter} /></span>
+                                <select
+                                    name="workFlowStatus"
+                                    id="workFlowStatus"
+                                    className="workflow-filter p-1"
+                                    onChange={(e) => { this.filterSelect(e) }}
+                                    value={this.state.value}
+                                >
+                                    <option value="" disabled>Filter</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
                         </form>
                     </div>
-                    <div className="col-sm-6 mt-5 pt-5 mr-0">
+                    <div className="col-sm-4 mt-5 pt-5 mr-0">
                         <button type="button" class="btn btn-success create-button" onClick={this.goToCreate}>
                             <span className="mr-1"> <FontAwesomeIcon icon={faPlus} /></span>
                   Create Workflow
@@ -45,10 +85,25 @@ class Flowlist extends Component {
                                 <div
                                     className="workflow-box col-sm-2"
                                     key={index}
-                                    onClick={() => { this.editWorkflow(index) }}
+                                    name="workflow-box"
+                                    onClick={(e) => { this.editWorkflow(e, index) }}
                                 >
                                     <p className="workflow-name">{flow.workflowName}-{index}</p>
-                                    <p className="workflow-status">{"completed"}</p>
+                                    <p className="workflow-status">
+                                        <span> {flow.status}</span>
+                                        <span
+                                            className={`list-check float-right`}
+                                            disabled={flow.status == 'Pending'}
+                                            name="workflow-status"
+                                            onClick={(e) => this.updateFlowStatus(e, index)}
+                                        >
+                                            <FontAwesomeIcon
+                                                className={`${flow.status == 'Pending' ? 'disabled' : ''}`}
+                                                icon={faCheckCircle} size="2x"
+                                                color={flow.status == 'Pending' ? 'grey' : 'green'}
+                                            />
+                                        </span>
+                                    </p>
                                 </div>
                             ))}
                         </div>

@@ -6,5 +6,6 @@ export default {
     RESET_WORKFLOW: "RESET_WORKFLOW",
 
 
-    GO_TO: 'GO_TO'
+    GO_TO: 'GO_TO',
+    UPDATE_LIST: 'UPDATE_LIST'
 }

@@ -21,17 +21,16 @@ let workflowListState = {
 }
 
 const updateFlowList = (state, action) => {
-    let flowListData = { ...state };
-    let newWorkFlow = action.payload || [];
-    debugger;
-    let existingWorkflow = flowListData.workflowList.find(i => i.id === newWorkFlow.id);
-    if (existingWorkflow) {
-        flowListData.workflowList[newWorkFlow.id] = newWorkFlow;
-        debugger;
+    const flowListData = { ...state };
+    let currentWorkFlow = flowListData.workflowList.filter(i => i.id === action.payload.id);
+    let existingFlows = flowListData.workflowList.filter(i => i.id !== action.payload.id) || null;
+    if (currentWorkFlow.length && currentWorkFlow[0].id !== -1) {
+        let flow = currentWorkFlow[0];
+        flowListData.workflowList = [...existingFlows, flow];
     } else {
-        flowListData.workflowList = [...flowListData.workflowList, newWorkFlow];
+        flowListData.workflowList = [...existingFlows, action.payload];
     }
-    return flowListData;
+    return { ...flowListData };
 }
 
 const resetFlow = () => {
@@ -74,6 +73,7 @@ function workflowReducer(state = initialState, action) {
 function workflowListReducer(state = workflowListState, action) {
     switch (action.type) {
         case AppConstants.SAVE_WORKFLOW:
+        case AppConstants.UPDATE_LIST:
             return updateFlowList(state, action);
         default:
             return state;

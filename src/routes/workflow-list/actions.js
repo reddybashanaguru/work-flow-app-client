@@ -11,3 +11,11 @@ export function goTo(payload) {
 }
 
 
+export function updateWorkFlowList(payload) {
+    return (dispatch, getState) => {
+        dispatch({
+            type: AppConstant.UPDATE_LIST,
+            payload
+        });
+    }
+};

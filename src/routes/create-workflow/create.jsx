@@ -18,6 +18,13 @@ class CreateWorkflowComponent extends Component {
         }
     }
 
+    componentDidMount() {
+        const { workflowList } = this.props;
+        const workflowId = this.props.match.params.id || null;
+        if (workflowId && workflowList.length <= 0) {
+            this.props.history.push("/flow");
+        }
+    }
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.workflowData.workflowSaved !== this.props.workflowData.workflowSaved) {
             alert('workflow saved successfully');
@@ -38,7 +45,8 @@ class CreateWorkflowComponent extends Component {
         let updatedFlow = workflowId ? workflowList[workflowId] : workflow;
         let node = {
             title: '',
-            content: ''
+            content: '',
+            status: 'Pending'
         }
         updatedFlow.nodes = updatedFlow.nodes.concat(node);
         this.props.updateWorkflow(updatedFlow);
@@ -117,18 +125,25 @@ class CreateWorkflowComponent extends Component {
     }
     saveWorkflow = (e) => {
         e.preventDefault();
+        debugger;
         const { workflow } = this.state;
         const { workflowList } = this.props;
         const workflowId = this.props.match.params.id || null;
+        let workflowPayload = workflowId ? workflowList[workflowId] : workflow;
         if (!workflowId) {
             let workLength = workflowList ? workflowList.length : 0;
-            workflow['id'] = workLength;
-            for (let node of workflow['nodes']) {
+            workflowPayload['id'] = workLength;
+            workflowPayload['status'] = 'Pending';
+            for (let node of workflowPayload['nodes']) {
                 node.color = 'grey';
-                node.status = 'Pending'
+            }
+        } else {
+            let workflowCompleted = workflowPayload['nodes'].filter(e => e.status !== "Pending");
+            if (workflowCompleted.length) {
+                workflowPayload['status'] = "Completed"
             }
         }
-        this.props.saveWorkflow(workflow);
+        this.props.saveWorkflow(workflowPayload);
     }
     render() {
         const workflowId = this.props.match.params.id || null;
