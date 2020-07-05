@@ -57,6 +57,7 @@ class LoginComponent extends Component {
                                     value={email}
                                     type="email" className="form-control" id="email"
                                     aria-describedby="emailHelp" placeholder="Enter email"
+                                    required
                                 />
                             </div>
                             <div className="form-group">
@@ -64,6 +65,7 @@ class LoginComponent extends Component {
                                     onChange={(e) => this.onInputChange(e)}
                                     name="password"
                                     value={password}
+                                    required
                                     type="password" className="form-control" id="password" placeholder="Password"
                                 />
                             </div>
@@ -72,6 +74,7 @@ class LoginComponent extends Component {
                                     onChange={(e) => this.checkboxChange(e)}
                                     name="rememberme"
                                     value={rememberme}
+                                    required
                                     type="checkbox" className="form-check-input" id="rememberMe" />
                                 <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
                             </div>
