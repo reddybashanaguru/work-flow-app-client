@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { faSearch, faPlus, faFilter, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPlus, faFilter, faCheckCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Flowlist extends Component {
@@ -64,6 +64,14 @@ class Flowlist extends Component {
         }
     }
 
+    deleteFlow = (e, flow) => {
+        const workflowId = flow.id;
+        const { workflowList = [], filteredWorkflowListData = [] } = this.props;
+        let inputList = filteredWorkflowListData.length > 0 ? filteredWorkflowListData : workflowList;
+        let updatedFlowList = inputList.filter(f => f.id !== workflowId);
+        this.props.filteredWorkflowList(updatedFlowList);
+    }
+
     render() {
         const { clickToRedirect } = this.state;
         const { workflowList = [], routerData, filteredWorkflowListData = [] } = this.props;
@@ -115,22 +123,28 @@ class Flowlist extends Component {
                                     name="workflow-box"
                                     onClick={(e) => { this.editWorkflow(e, index) }}
                                 >
-                                    <p className="workflow-name">{flow.workflowName}-{index}</p>
-                                    <p className="workflow-status">
-                                        <span> {flow.status}</span>
-                                        <span
-                                            className={`list-check float-right`}
-                                            disabled={flow.status == 'Pending'}
-                                            name="workflow-status"
-                                            onClick={(e) => this.updateFlowStatus(e, index)}
-                                        >
-                                            <FontAwesomeIcon
-                                                className={`${flow.status == 'Pending' ? 'disabled' : ''}`}
-                                                icon={faCheckCircle} size="2x"
-                                                color={flow.status == 'Pending' ? 'grey' : 'green'}
-                                            />
-                                        </span>
-                                    </p>
+                                    <span
+                                        className="delete-icon"
+                                        onClick={(e) => { this.deleteFlow(e, flow) }}
+                                    ><FontAwesomeIcon icon={faTrash} color='red' /></span>
+                                    <div className="workflow-body pt-4">
+                                        <p className="workflow-name">{flow.workflowName}-{index}</p>
+                                        <p className="workflow-status">
+                                            <span> {flow.status}</span>
+                                            <span
+                                                className={`list-check float-right`}
+                                                disabled={flow.status == 'Pending'}
+                                                name="workflow-status"
+                                                onClick={(e) => this.updateFlowStatus(e, index)}
+                                            >
+                                                <FontAwesomeIcon
+                                                    className={`${flow.status == 'Pending' ? 'disabled' : ''}`}
+                                                    icon={faCheckCircle} size="2x"
+                                                    color={flow.status == 'Pending' ? 'grey' : 'green'}
+                                                />
+                                            </span>
+                                        </p>
+                                    </div>
                                 </div>
                             ))}
                         </div>

@@ -22,6 +22,7 @@ let workflowListState = {
 
 const updateFlowList = (state, action) => {
     const flowListData = { ...state };
+    debugger;
     let currentWorkFlow = flowListData.workflowList.filter(i => i.id === action.payload.id);
     let existingFlows = flowListData.workflowList.filter(i => i.id !== action.payload.id) || null;
     if (currentWorkFlow.length && currentWorkFlow[0].id !== -1) {

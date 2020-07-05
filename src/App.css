@@ -113,12 +113,15 @@ body svg{
     margin-right: 16px;
     border-radius: 4px;
 }
-.workflow-container .workflow-box .workflow-name{
+.workflow-container .workflow-box .workflow-body{
+
+}
+.workflow-container .workflow-box .workflow-body .workflow-name{
     border: 1px solid;
     padding: 16px;
     border-radius: 4px;
 }
-.workflow-container .workflow-box .workflow-status{
+.workflow-container .workflow-box .workflow-body .workflow-status{
     padding: 16px;;
 }
 
